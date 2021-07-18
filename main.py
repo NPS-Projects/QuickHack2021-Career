@@ -21,14 +21,22 @@ driver.close()  # close after getting html file
 
 # parse html into BeautifulSoup
 jS_bs = bs(jS_html, "html.parser")
-js_container = jS_bs.findAll("div", {"class": "sx2jih0 zcydq81w"})
+js_container = jS_bs.findAll("div", {"class": "sx2jih0 zcydq878"})
 print(len(js_container))
 for j in js_container:
     job_pos = j.find("div", {"class": "sx2jih0 _2j8fZ_0 sIMFL_0 _1JtWu_0"})
-    job_company = j.find("span",{"class": "sx2jih0 zcydq82b _18qlyvc0 _18qlyvcv _18qlyvc1 _18qlyvc8"})
-    job_location = j.findAll("div", {"class":'sx2jih0 zcydq82b zcydq8r iwjz4h0'})
+    job_data = str(j.find("span"))
 
-    print(job_pos,job_company)
+    temp_data = job_data[job_data.find("title"):]
+    start_index = temp_data.find("\">") + 2
+    end_index = temp_data.find("</a>")
+    
+    job_company_str = temp_data[start_index:end_index]
+
+    if job_pos is not None:
+        print(job_pos.string)
+        
+    print(job_company_str)
 
 # job_company = jS_bs.findAll("div", {"class":'sx2jih0 zcydq82b _18qlyvc0 _18qlyvcv _18qlyvc1 _18qlyvc8'})
 # job_position = jS_bs.findAll("div", {"class":'sx2jih0 _2j8fZ_0 sIMFL_0 _1JtWu_0'})
