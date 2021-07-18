@@ -19,15 +19,18 @@ A system that compiles job opportunities available from three different popular 
 <ol>
   <li>Install Live Server Extension in Visual Studio Code</li>
   <li>Install beautifulsoup4 extension and selenium</li>
-  ```
-  pip install beautifulsoup4
-  pip install selenium
-  ```
   <li>Run the python script main.py</li>
   <li>Open QuickHack.html file with Live Server</li>
   <li>Press Load Data</li>
   <li>Enjoy!</li>
 </ol>
+
+<p>For Step 2:</p>
+
+```
+pip install beautifulsoup4
+pip install selenium
+```
 
 <h3>Drawbacks</h3>
 It doesn't have any drawbacks. Except in this prototype, the link doesn’t work, yet.
