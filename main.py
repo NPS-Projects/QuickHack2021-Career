@@ -5,7 +5,7 @@ from selenium import webdriver
 output_filename = "Job_list.csv"
 
 # headers = "Company, Job_Position, Salary, Location, Link"
-headers = "Company, Job_Position, Location,"
+headers = "Company, Job_Position, Location, Salary, Website\n"
 f = open(output_filename, 'w')
 f.write(headers)
 website = "www.jobstreet.com.my"
@@ -48,11 +48,11 @@ for j in js_container:
         f.write('"' + job_company + '"' + ',' + '"' + job_pos + '"' ',' + '"' + job_location + '"' + ',' + '"' + job_salary + '"' + "," + '"' + website + '"' + '\n')
 
 # Get all HTML
-# jora
+# jobstreet
 driver = webdriver.Chrome('./chromedriver.exe')
 jora_url = "https://my.jora.com/j?sp=facet&q=internship+computer+science&a=14d"
 driver.get(jora_url)
-jr_html = driver.page_source  # html file for Jora
+jr_html = driver.page_source  # html file for JobStreet
 driver.close()  # close after getting html file
 website = "my.jora.com"
 # parse html into BeautifulSoup
@@ -74,16 +74,16 @@ website = "www.ricebowl.my"
 driver = webdriver.Chrome('./chromedriver.exe')
 
 # Get all HTML
-# ricebowl
+# jobstreet
 rb_url = "https://www.ricebowl.my/content/search/job?q=computer-science&jtype=1-Internship"
 driver.get(rb_url)
-rb_html = driver.page_source  # html file for ricebowl
+rb_html = driver.page_source  # html file for JobStreet
 driver.close()  # close after getting html file
 
 # parse html into BeautifulSoup
 rb_bs = bs(rb_html, "html.parser")
 rb_container = rb_bs.findAll("div", {"class": "is-flex-ellipsis is-flex-grow-1 pl-3"})
-
+# print(rb_container)
 for j in rb_container:
     job_pos = j.find("a").string.strip()
     job_company = j.find("div",{"class": "text-ellipsis"}).string.strip()
